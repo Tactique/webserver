@@ -81,3 +81,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# TODO actually resolve this with os.path.whatsits
+JSWARS_URL = '/../jswars/assets/'
