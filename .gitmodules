@@ -1,0 +1,3 @@
+[submodule "jswars"]
+	path = jswars
+	url = git@github.com:DomoCo/jswars.git
