@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: green;
+            }
+            canvas {
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+
+                margin: auto;
+            }
+        </style>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/libs/jQuery.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/libs/Qunit.js"></script>
+        <link rel="stylesheet" href="{{ STATIC_URL }}js/libs/Qunit.css">
+        <script type="text/javascript" src="{{ STATIC_URL }}js/libs/heap.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/ArrayUtils.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/Pathfinding.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/Network.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/Keyboard.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/Mouse.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/Sprite.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/Assets.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/Renderer.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/Camera.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/Input.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/World.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/Game.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/App.js"></script>
+        <!-- Tests go here -->
+        <script type="text/javascript" src="{{ STATIC_URL }}js/tests/ArrayUtils_test.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/tests/Keyboard_test.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/tests/Mouse_test.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/tests/Camera_test.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/tests/Sprites_test.js"></script>
+    </head>
+    <body>
+        <h1 id="qunit-header">QUnit Test Suite</h1>
+        <div id="qunit"></div>
+        <div id="content">
+            <div id="canvas_land">
+            </div>
+        </div>
+        <div id="gameinfo">
+            <label>Your Id</label>
+            <input type="text" id="enteredPlayerId" />
+            <label>How many players would you like in your game?</label>
+            <input type="text" id="numPlayers" />
+            <input type="button" id="submitGameRequest" value="Submit" />
+            <input type="button" id="quintenbutton" value="Lazy Quinten" />
+        </div>
+        <div id="userinfo" style="display: none;">
+            <div id="playerId">10</div>
+            <div id="wsport">{{.Port}}</div>
+        </div>
+    </body>
+</html>

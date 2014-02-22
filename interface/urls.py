@@ -3,5 +3,7 @@ from django.conf.urls import patterns, url
 from interface import views
 
 urlpatterns = patterns('',
-    url(r'^$', views.index, name='index')
+    url(r'^tests/$', views.tests, name='tests'),
+    url(r'^editor/$', views.editor, name='editor'),
+    url(r'$', views.index, name='index'),
 )
