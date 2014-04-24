@@ -15,13 +15,13 @@ class Command(BaseCommand):
             with open(TERRAIN_PATH, 'r') as tFile:
                 terrain = json.loads(tFile.read())
                 for cell in terrain["terrain"]:
-                    print "Creating Cell(%s, %s)" % (cell["spriteName"], cell["cType"])
+                    print("Creating Cell(%s, %s)" % (cell["spriteName"], cell["cType"]))
                     newCell = Cell(spriteName=cell["spriteName"], cType=cell["cType"])
                     newCell.save()
         except KeyError:
-            print "Please define the $DOMOROOT environment variable to your domoco dir"
+            print("Please define the $DOMOROOT environment variable to your domoco dir")
 
     def clearCells(self):
-        print "Clearing the Cells"
+        print("Clearing the Cells")
         for cell in Cell.objects.all():
             cell.delete()
