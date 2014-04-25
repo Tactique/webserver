@@ -23,3 +23,7 @@ class Unit(HasSprite):
 # I'm so lazy...
 class World(models.Model):
     lump = models.TextField()
+
+class ResponseTemplate(models.Model):
+    name = models.CharField(max_length=50)
+    JSON = models.TextField()
