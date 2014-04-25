@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^play/$', views.index, name='index'),
     # Ajax network calls
     url(r'^info/cell/$', ajax_views.get_cells),
+    url(r'^info/responses/([\w\d]+)/$', ajax_views.get_response_templates),
 )
