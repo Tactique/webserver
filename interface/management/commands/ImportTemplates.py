@@ -17,8 +17,9 @@ class Command(BaseCommand):
                     templates = json.loads(rFile.read())
                     for template in templates:
                         print("Adding template for response %s" % template)
+                        JSONstr = json.dumps(templates[template])
                         newTemplate = ResponseTemplate(name=template,
-                                                       JSON=templates[template])
+                                                       JSON=JSONstr)
                         newTemplate.save()
         except KeyError:
             print("Please define the $DOMOROOT environment variable to your domoco dir")
