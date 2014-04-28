@@ -1,10 +1,11 @@
 from django.http import HttpResponse
 from django.http import Http404
 from django.core import serializers
+from django.contrib.auth import authenticate
 
-from interface.models import Cell, ResponseTemplate
+from interface.models import Cell, ResponseTemplate, LoginData
 
-import json
+import json, uuid
 
 def get_cells(request, type_id=0):
     if type_id == 0:
@@ -20,3 +21,16 @@ def get_response_templates(request, responseName):
         return HttpResponse(resp.JSON, content_type="application/json")
     except ResponseTemplate.DoesNotExist:
         raise Http404
+
+def login(request):
+    if request.method != "POST":
+        raise Http404
+    user = authenticate(username=request.POST["username"],
+                        password=request.POST["password"])
+    if user is not None:
+        info = {"token": str(uuid.uuid4())}
+        loginInfo = LoginData(userid=user.id, token=info["token"])
+        loginInfo.save()
+        return HttpResponse(json.dumps(info),
+                            content_type="application/json")
+    return HttpResponse("incorrect username or password", status=403)
