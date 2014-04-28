@@ -8,6 +8,7 @@
     </head>
     <body>
         <div>
+            <div id="login_error"></div>
             <!-- All logins are happening via javascript, but a fallback might be
             reasonable some day -->
             <form action="/", method="post" id="login">{% csrf_token %}
