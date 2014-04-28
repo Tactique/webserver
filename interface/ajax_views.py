@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.http import Http404
 from django.core import serializers
 from django.contrib.auth import authenticate
+from django.views.decorators.http import require_POST
 
 from interface.models import Cell, ResponseTemplate, LoginData
 
@@ -22,9 +23,8 @@ def get_response_templates(request, responseName):
     except ResponseTemplate.DoesNotExist:
         raise Http404
 
+@require_POST
 def login(request):
-    if request.method != "POST":
-        raise Http404
     user = authenticate(username=request.POST["username"],
                         password=request.POST["password"])
     if user is not None:
