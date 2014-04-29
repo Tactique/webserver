@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     # Ajax network calls
     url(r'^info/cell/$', ajax_views.get_cells),
     url(r'^info/responses/([\w\d]+)/$', ajax_views.get_response_templates),
-    url(r'^login/$', ajax_views.login),
+    url(r'^login/$', ajax_views.login_ajax),
+    url(r'^logout/$', ajax_views.logout_ajax),
 )

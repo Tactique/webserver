@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.http import Http404
 from django.core import serializers
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.http import require_POST
 
 from interface.models import Cell, ResponseTemplate, LoginData
@@ -24,13 +24,21 @@ def get_response_templates(request, responseName):
         raise Http404
 
 @require_POST
-def login(request):
+def login_ajax(request):
     user = authenticate(username=request.POST["username"],
                         password=request.POST["password"])
     if user is not None:
+        login(request, user)
         info = {"token": str(uuid.uuid4())}
         loginInfo = LoginData(userid=user.id, token=info["token"])
         loginInfo.save()
         return HttpResponse(json.dumps(info),
                             content_type="application/json")
     return HttpResponse("incorrect username or password", status=403)
+
+@require_POST
+def logout_ajax(request):
+    logout(request)
+    result = {}
+    return HttpResponse(json.dumps(result),
+                        content_type="application/json")

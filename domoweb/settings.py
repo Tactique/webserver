@@ -88,3 +88,5 @@ JSWARS_DIR = os.path.join(BASE_DIR, 'jswars')
 STATICFILES_DIRS = (
     JSWARS_DIR,
 )
+
+LOGIN_URL = '/'
