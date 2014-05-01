@@ -1,26 +1,66 @@
 {% load staticfiles %}
+{% load bootstrap3 %}
+<!DOCTYPE html>
+
 <html>
     <head>
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
         <script type="text/javascript" src="{{ STATIC_URL }}js/libs/jQuery.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/libs/jquery.cookie.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/AjaxNetwork.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/Site.js"></script>
     </head>
     <body>
-        <div id="login_error"></div>
-        <div>
-            <!-- All logins are happening via javascript, but a fallback might be
-            reasonable some day -->
-            <form action="/", method="post" id="login">{% csrf_token %}
-                {{ login_form }}
-                <button type="submit" id="submitButton">Submit</button>
-            </form>
-        </div>
-        <div>
-            <form action="/" method="post" id="register">
-                {{ registration_form }}
-                <button type="submit" id="registerButton">Register</button>
-            </form>
+        <div class="container">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                </div>
+                <span class="navbar-brand">JSWarz</span>
+            </div>
+            <div class="row">
+                <div id="login_error"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Login
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!-- All logins are happening via javascript, but a fallback might be
+                            reasonable some day -->
+                            <form action="/", method="post" id="login">
+                                {% csrf_token %}
+                                {% bootstrap_form login_form %}
+                                {% buttons %}
+                                    <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+                                {% endbuttons %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Register
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form action="/" method="post" id="register">
+                                {% csrf_token %}
+                                {% bootstrap_form registration_form %}
+                                {% buttons %}
+                                    <button type="submit" class="btn btn-primary" id="registerButton">Submit</button>
+                                {% endbuttons %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
