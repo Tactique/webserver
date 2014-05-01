@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^info/responses/([\w\d]+)/$', ajax_views.get_response_templates),
     url(r'^login/$', ajax_views.login_ajax),
     url(r'^logout/$', ajax_views.logout_ajax),
+    url(r'^register/$', ajax_views.register_ajax)
 )

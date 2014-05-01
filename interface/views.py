@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import redirect, render
-from django.template import Context, RequestContext
+from django.template import RequestContext
 
 # Create your views here.
 def login(request):
@@ -11,8 +12,11 @@ def login(request):
         else:
             return redirect('/play/')
     else:
-        c = RequestContext(request, {})
-        return render(request, "interface/login.html", c)
+        forms = {
+            'login_form': AuthenticationForm(),
+            'registration_form': UserCreationForm(),
+        }
+        return render(request, "interface/login.html", forms)
 
 @login_required
 def index(request):

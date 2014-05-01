@@ -7,18 +7,19 @@
         <script type="text/javascript" src="{{ STATIC_URL }}js/Site.js"></script>
     </head>
     <body>
+        <div id="login_error"></div>
         <div>
-            <div id="login_error"></div>
             <!-- All logins are happening via javascript, but a fallback might be
             reasonable some day -->
             <form action="/", method="post" id="login">{% csrf_token %}
-                <label>Username</label>
-                <input type="username" id="username" />
-
-                <label>Password</label>
-                <input type="password" id="password" />
-
+                {{ login_form }}
                 <button type="submit" id="submitButton">Submit</button>
+            </form>
+        </div>
+        <div>
+            <form action="/" method="post" id="register">
+                {{ registration_form }}
+                <button type="submit" id="registerButton">Register</button>
             </form>
         </div>
     </body>
