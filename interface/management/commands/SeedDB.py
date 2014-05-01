@@ -1,23 +1,23 @@
 from django.core.management.base import BaseCommand
 from interface.models import Cell
 
-import json
 import os
+import csv
 
 class Command(BaseCommand):
     help = "Seed the database with all available data"
 
     def handle(self, *args, **options):
         try:
-            TERRAIN_PATH = '%s/common/resources/terrain.json' % (os.environ["DOMOROOT"],)
+            TERRAIN_PATH = '%s/common/resources/terrain.csv' % (os.environ["DOMOROOT"],)
             self.clearCells()
             # Should be the path to the common types list
             with open(TERRAIN_PATH, 'r') as tFile:
-                terrain = json.loads(tFile.read())
-                for cell in terrain["terrain"]:
-                    print("Creating Cell(%s, %s)" % (cell["spriteName"], cell["cType"]))
-                    newCell = Cell(spriteName=cell["spriteName"], cType=cell["cType"])
-                    newCell.save()
+                terrain_reader = csv.reader(tFile)
+                next(terrain_reader, None)
+                for cType, spriteName in terrain_reader:
+                    print("Creating Cell(%s, %s)" % (cType, spriteName))
+                    Cell(spriteName=spriteName, cType=cType).save()
         except KeyError:
             print("Please define the $DOMOROOT environment variable to your domoco dir")
 
