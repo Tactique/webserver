@@ -23,7 +23,7 @@ class Command(BaseCommand):
             print("Please define the $DOMOROOT environment variable to your domoco dir")
             return
         self.clearCells()
-        cell_types = self.seed_cells(resources_path)
+        self.seed_cells(resources_path)
         weapon_types = self.seed_weapon_types(resources_path)
         weapons = self.seed_weapons(resources_path, weapon_types)
         armor_types = self.seed_armor_types(resources_path)
