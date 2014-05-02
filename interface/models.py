@@ -21,6 +21,10 @@ class HasSprite(models.Model):
     class Meta:
         abstract = True
 
+class Team(HasSprite):
+    color = models.CharField(max_length=MAX_CHAR_LENGTH)
+    nationType = models.PositiveIntegerField()
+
 class Cell(HasSprite):
     cellType = models.PositiveIntegerField()
 

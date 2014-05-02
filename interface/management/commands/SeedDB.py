@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from interface.models import (
+    Team,
     Cell,
     WeaponType,
     Weapon,
@@ -23,6 +24,7 @@ class Command(BaseCommand):
             print("Please define the $DOMOROOT environment variable to your domoco dir")
             return
         self.clearCells()
+        self.seed_teams(resources_path)
         self.seed_cells(resources_path)
         weapon_types = self.seed_weapon_types(resources_path)
         weapons = self.seed_weapons(resources_path, weapon_types)
@@ -36,6 +38,15 @@ class Command(BaseCommand):
         print("Clearing the Cells")
         for cell in Cell.objects.all():
             cell.delete()
+
+    def seed_teams(self, resources_path):
+        with open(resources_path + 'teams.csv', 'r') as file_:
+            reader = csv.reader(file_)
+            next(reader, None)
+            for nationType, color in reader:
+                print("Creating Team(%s)" % (
+                    ', '.join((nationType, color, color))))
+                Team(nationType=nationType, spriteName=color, color=color).save()
 
     def seed_cells(self, resources_path):
         with open(resources_path + 'terrain.csv', 'r') as file_:
