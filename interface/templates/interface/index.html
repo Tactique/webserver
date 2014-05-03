@@ -1,20 +1,8 @@
 {% load staticfiles %}
 <html>
     <head>
-        <style>
-            body {
-                background-color: green;
-            }
-            canvas {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index.css">
 
-                margin: auto;
-            }
-        </style>
         <script type="text/javascript" src="{{ STATIC_URL }}js/libs/jQuery.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/libs/jquery.cookie.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/libs/heap.js"></script>
