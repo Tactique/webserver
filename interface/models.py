@@ -21,20 +21,20 @@ class HasSprite(models.Model):
     class Meta:
         abstract = True
 
-class Team(HasSprite):
-    color = models.CharField(max_length=MAX_CHAR_LENGTH)
+class Team(models.Model):
     nationType = models.PositiveIntegerField()
+    name = models.CharField(max_length=MAX_CHAR_LENGTH)
 
 class Cell(HasSprite):
     cellType = models.PositiveIntegerField()
 
 class WeaponType(models.Model):
-    name = models.CharField(max_length=MAX_CHAR_LENGTH)
     weaponType = models.PositiveIntegerField()
-
-class Weapon(HasSprite):
-    weaponType = models.ForeignKey('WeaponType')
     name = models.CharField(max_length=MAX_CHAR_LENGTH)
+
+class Weapon(models.Model):
+    name = models.CharField(max_length=MAX_CHAR_LENGTH)
+    weaponType = models.ForeignKey('WeaponType')
     power = models.PositiveIntegerField()
     minRange = models.PositiveIntegerField()
     maxRange = models.PositiveIntegerField()
@@ -43,7 +43,7 @@ class ArmorType(models.Model):
     armorType = models.PositiveIntegerField()
     name = models.CharField(max_length=MAX_CHAR_LENGTH)
 
-class Armor(HasSprite):
+class Armor(models.Model):
     name = models.CharField(max_length=MAX_CHAR_LENGTH)
     strength = models.PositiveIntegerField()
     armorType = models.ForeignKey('ArmorType')
@@ -52,19 +52,19 @@ class SpeedMap(models.Model):
     name = models.CharField(max_length=MAX_CHAR_LENGTH)
     speeds = models.CharField(max_length=MAX_JSON_LENGTH)
 
-class Movement(HasSprite):
-    distance = models.PositiveIntegerField(default=1)
+class Movement(models.Model):
     name = models.CharField(max_length=MAX_CHAR_LENGTH)
+    distance = models.PositiveIntegerField(default=1)
     speedMap = models.ForeignKey('SpeedMap')
 
-class Unit(HasSprite):
+class Unit(models.Model):
     name = models.CharField(max_length=MAX_CHAR_LENGTH)
     health = models.PositiveIntegerField()
-    movement = models.ForeignKey('Movement')
     attack_one = models.ForeignKey('Weapon')
     attack_two = models.ForeignKey(
         'Weapon', blank=True, null=True, related_name='attack_two_weapon')
     armor = models.ForeignKey('Armor')
+    movement = models.ForeignKey('Movement')
 
 # I'm so lazy...
 class World(models.Model):
