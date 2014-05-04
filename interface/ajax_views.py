@@ -5,16 +5,27 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.decorators.http import require_POST
 
-from interface.models import Cell, ResponseTemplate, LoginData
+from interface.models import ResponseTemplate, LoginData
+from tables import Cell
+from engine import engine
 
-import json, uuid
+import json
+import uuid
 
-def get_cells(request, type_id=0):
-    if type_id == 0:
-        cells = Cell.objects.all()
-    else:
-        cells = Cell.objects.get(type_id)
-    return HttpResponse(serializers.serialize("json", cells),
+
+def _get_sprite_name(cell):
+    #TODO better sprite names here
+    return cell.name
+
+
+def get_cells(request):
+    session = engine.get_session()
+    cells_json = []
+    for cell in session.query(Cell):
+        cells_json.append({
+            "cellType": cell.cellType,
+            "spriteName": _get_sprite_name(cell)})
+    return HttpResponse(json.dumps(cells_json),
                         content_type="application/json")
 
 def get_response_templates(request, responseName):
