@@ -1,5 +1,5 @@
 """
-Django settings for domoweb project.
+Django settings for tactique project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -50,9 +50,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'domoweb.urls'
+ROOT_URLCONF = 'tactique.urls'
 
-WSGI_APPLICATION = 'domoweb.wsgi.application'
+WSGI_APPLICATION = 'tactique.wsgi.application'
 
 
 # Database

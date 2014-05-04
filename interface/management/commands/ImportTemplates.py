@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            RESPONSE_DIR = '%s/common/responses' % (os.environ["DOMOROOT"],)
+            RESPONSE_DIR = '%s/common/responses' % (os.environ["ROOTIQUE"],)
             self.clearTemplates();
             for responsePath in os.listdir(RESPONSE_DIR):
                 fullPath = "%s/%s" % (RESPONSE_DIR, responsePath)
@@ -22,7 +22,7 @@ class Command(BaseCommand):
                                                        JSON=JSONstr)
                         newTemplate.save()
         except KeyError:
-            print("Please define the $DOMOROOT environment variable to your domoco dir")
+            print("Please define the $ROOTIQUE environment variable to your domoco dir")
 
     def clearTemplates(self):
         print("Clearing templates")
