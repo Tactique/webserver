@@ -14,7 +14,7 @@ import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-sys.path.append(os.path.join(os.environ['ROOTIQUE'], 'common', 'database'))
+sys.path.append(os.path.join(os.environ['ROOTIQUE'], 'common', 'database', 'sql_scripts'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
