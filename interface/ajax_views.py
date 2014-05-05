@@ -20,24 +20,29 @@ def _get_sprite_name(cell):
 
 
 def get_cells(request):
-    session = engine.get_session()
-    cells_json = []
-    for cell in session.query(Cell):
-        cells_json.append({
-            "cellType": cell.cellType,
-            "spriteName": _get_sprite_name(cell)})
-    session.close()
-    return HttpResponse(json.dumps(cells_json),
-                        content_type="application/json")
+    try:
+        session = engine.get_session()
+        cells_json = []
+        for cell in session.query(Cell):
+            cells_json.append({
+                "cellType": cell.cellType,
+                "spriteName": _get_sprite_name(cell)})
+        return HttpResponse(
+            json.dumps(cells_json),
+            content_type="application/json")
+    finally:
+        session.close()
 
 def get_response_templates(request, responseName):
-    session = engine.get_session()
-    resp = session.query(ResponseTemplate).filter(ResponseTemplate.name==responseName)
-    session.close()
     try:
-        return HttpResponse(resp[0].json, content_type="application/json")
-    except IndexError:
-        raise Http404
+        session = engine.get_session()
+        resp = session.query(ResponseTemplate).filter(ResponseTemplate.name==responseName)
+        try:
+            return HttpResponse(resp[0].json, content_type="application/json")
+        except IndexError:
+            raise Http404
+    finally:
+        session.close()
 
 def save_login_info(user):
     info = {"token": str(uuid.uuid4())}
