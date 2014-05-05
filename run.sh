@@ -1,4 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
-go run jswars/server.go -logpath=(pwd)/jswars.log &
-python manage.py runserver
+pushd $(dirname $0) > /dev/null
+
+pkill python
+
+./manage.py runserver 0.0.0.0:8000 > django.log &
+
+popd > /dev/null
