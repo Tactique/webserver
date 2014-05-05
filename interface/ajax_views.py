@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.decorators.http import require_POST
 
 from interface.models import ResponseTemplate, LoginData
-from tables import Cell
+from tables.game_engine import Cell
 from engine import engine
 
 import json
