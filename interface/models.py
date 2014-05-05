@@ -24,7 +24,3 @@ class HasSprite(models.Model):
 # I'm so lazy...
 class World(models.Model):
     lump = models.TextField()
-
-class ResponseTemplate(models.Model):
-    name = models.CharField(max_length=MAX_CHAR_LENGTH)
-    JSON = models.TextField()

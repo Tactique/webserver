@@ -5,9 +5,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.decorators.http import require_POST
 
-from interface.models import ResponseTemplate, LoginData
-from tables.game_engine import Cell
+from interface.models import LoginData
 from engine import engine
+from tables.templates import ResponseTemplate
+from tables.game_engine import Cell
 
 import json
 import uuid
@@ -25,14 +26,17 @@ def get_cells(request):
         cells_json.append({
             "cellType": cell.cellType,
             "spriteName": _get_sprite_name(cell)})
+    session.close()
     return HttpResponse(json.dumps(cells_json),
                         content_type="application/json")
 
 def get_response_templates(request, responseName):
+    session = engine.get_session()
+    resp = session.query(ResponseTemplate).filter(ResponseTemplate.name==responseName)
+    session.close()
     try:
-        resp = ResponseTemplate.objects.get(name=responseName)
-        return HttpResponse(resp.JSON, content_type="application/json")
-    except ResponseTemplate.DoesNotExist:
+        return HttpResponse(resp[0].json, content_type="application/json")
+    except IndexError:
         raise Http404
 
 def save_login_info(user):
