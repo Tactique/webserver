@@ -34,6 +34,8 @@
                     document.getElementById("unitInfo").style.display = "block";
                     document.getElementById("unitName").textContent = unitControlState.unit.name;
                     document.getElementById("unitLegs").textContent = unitControlState.unit.movementType;
+                    document.getElementById("unitHealth").style.width = (100 * (unitControlState.unit.health / 30.0));
+                    // 30.0 above should actually be the max health of the unit; this is accurate only for the mage
                 } else {
                     document.getElementById("unitInfo").style.display = "none";
                 }
@@ -49,6 +51,7 @@
         <div id="unitInfo">
             <p id="unitName">Foo</p>
             <p id="unitLegs">Legs</p>
+            <span id="unitHealthContainer"><span id="unitHealth">Health</span></span>
         </div>
 
         </div>
