@@ -19,9 +19,9 @@ def login(request):
         return render(request, "interface/login.html", forms)
 
 @login_required
-def index(request):
+def play(request):
     c = RequestContext(request, {})
-    return render(request, 'interface/index.html', c)
+    return render(request, 'interface/play.html', c)
 
 def tests(request):
     c = RequestContext(request, {})

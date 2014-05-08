@@ -6,7 +6,7 @@ urlpatterns = patterns('',
     url(r'^$', views.login),
     url(r'^tests/$', views.tests, name='tests'),
     url(r'^editor/$', views.editor, name='editor'),
-    url(r'^play/$', views.index, name='index'),
+    url(r'^play/$', views.play, name='play'),
     # Ajax network calls
     url(r'^info/player/$', ajax_views.player_info),
     url(r'^info/cell/$', ajax_views.get_cells),
