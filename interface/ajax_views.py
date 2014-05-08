@@ -51,6 +51,11 @@ def save_login_info(user):
     return HttpResponse(json.dumps(info),
                         content_type="application/json")
 
+def player_info(request):
+    info = {"id": str(request.user.id)}
+    return HttpResponse(json.dumps(info),
+                        content_type="application/json")
+
 @require_POST
 def register_ajax(request):
     registration_form = UserCreationForm(data=request.POST)
