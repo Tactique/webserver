@@ -1,0 +1,22 @@
+{% load staticfiles %}
+{% load bootstrap3 %}
+<html>
+    <head>
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/siteWide.css">
+        <script type="text/javascript" src="{{ STATIC_URL }}jswars/js/libs/jQuery.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}jswars/js/libs/jquery.cookie.js"></script>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                </div>
+                <span class="navbar-brand">Tactique</span>
+            </div>
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>
