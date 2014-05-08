@@ -85,12 +85,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/jswars/'
+STATIC_URL = '/static/'
 
-JSWARS_DIR = os.path.join(BASE_DIR, 'jswars')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
-    JSWARS_DIR,
+    STATIC_DIR,
 )
 
 LOGIN_URL = '/'
