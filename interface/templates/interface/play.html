@@ -1,6 +1,7 @@
-{% load staticfiles %}
-<html>
-    <head>
+{% extends "interface/base.html" %}
+{% load bootstrap3 %}
+{% block title %}Play{% endblock %}
+{% block head %}
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jswars/css/index.css">
 
         <script type="text/javascript" src="{{ STATIC_URL }}jswars/js/libs/jQuery.js"></script>
@@ -25,7 +26,6 @@
         <script type="text/javascript" src="{{ STATIC_URL }}jswars/js/Game.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}jswars/js/App.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}jswars/js/GameApp.js"></script>
-
         <!-- Unit info panel -->
         <script type="text/javascript">
             onclick=function(){
@@ -41,9 +41,8 @@
                 }
             }
         </script>
-
-    </head>
-    <body>
+{% endblock %}
+{% block content %}
         <div id="content">
             <div id="canvas_land">
             </div>
@@ -56,14 +55,23 @@
 
         </div>
         <div id="gameinfo">
-            <label>How many players would you like in your game?</label>
-            <input type="text" id="numPlayers" />
-            <input type="button" id="submitGameRequest" value="Submit" />
-            <input type="button" id="quintenbutton" value="Lazy Quinten" />
-            <input type="button" id="logout" value="Logout" />
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            Login
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <input id="numPlayers" type="text" class="form-control" placeholder="2" required autofocus>
+                        {% buttons %}
+                            <button class="btn btn-primary" id="submitGameRequest">Submit</button>
+                        {% endbuttons %}
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="userinfo" style="display: none;">
             <div id="wsport">:8888</div>
         </div>
-    </body>
-</html>
+{% endblock %}
