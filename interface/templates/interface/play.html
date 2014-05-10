@@ -26,19 +26,8 @@
         <script type="text/javascript" src="{{ STATIC_URL }}jswars/js/Game.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}jswars/js/App.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}jswars/js/GameApp.js"></script>
-        <!-- Unit info panel -->
-        <script type="text/javascript">
-            onclick=function(){
-                console.log("foo")
-                if (unitControlState.unit != null) {
-                    document.getElementById("unitInfo").style.display = "block";
-                    document.getElementById("unitName").textContent = unitControlState.unit.name;
-                    document.getElementById("unitLegs").textContent = unitControlState.unit.movementType;
-                    document.getElementById("unitHealth").style.width = (100 * (unitControlState.unit.health / unitControlState.unit.maxHealth));
-                } else {
-                    document.getElementById("unitInfo").style.display = "none";
-                }
-            }
+        <script type="text/javascript" src="{{ STATIC_URL }}jswars/js/Interface.js">
+            
         </script>
 {% endblock %}
 {% block content %}
@@ -47,8 +36,8 @@
             </div>
 
         <div id="unitInfo">
-            <p id="unitName">Foo</p>
-            <p id="unitLegs">Legs</p>
+            <div id="unitName">Foo</div>
+            <div id="unitLegs">Legs</div>
             <span id="unitHealthContainer"><span id="unitHealth">Health</span></span>
         </div>
 
